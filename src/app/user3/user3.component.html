@@ -1,0 +1,242 @@
+<div class="container-fluid" style="background-color: rgb(73, 80, 167)">
+  <h1>Online Banking</h1>
+</div>
+<div class="container">
+  <div class="a">
+    <h6>{{ dateObj | date }}</h6>
+  </div>
+  <h2>Welcome, {{ accountName }}</h2>
+  <h3>Account Number : {{ accountNumber }}</h3>
+  <h4>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Balance:{{ balance | currency: "INR" }}
+  </h4>
+</div>
+<img
+  src="https://static.vecteezy.com/system/resources/previews/003/712/754/non_2x/businessman-using-laptop-computer-with-online-banking-and-payment-digital-marketing-finance-and-banking-networking-online-shopping-and-icon-customer-network-connection-home-quarantine-new-normal-free-photo.jpg"
+  style="width: 100%"
+/>
+<div class="container">
+  <input
+    type="button"
+    class="btn btn-primary"
+    (click)="disbalance()"
+    value="Refresh"
+  />&nbsp;&nbsp;
+  <input
+    type="button"
+    class="btn btn-primary"
+    (click)="displayBalance()"
+    value="Show Transaction"
+  />&nbsp;
+
+  <div class="container">
+    <div *ngIf="showBalance">
+      <br />
+      <input
+        type="button"
+        class="btn btn-primary"
+        (click)="backTransaction()"
+        value="&#x25C1;"
+      />
+      <table class="table">
+        <tr>
+          <th>Id</th>
+          <th>Description</th>
+          <th>Amount</th>
+        </tr>
+        Search :
+        <input type="text" [(ngModel)]="query1" />
+        <tr *ngFor="let x of Cars | search: query1">
+          <td>{{ x.id }}</td>
+          <td>{{ x.name }}</td>
+          <td>{{ x.color | currency: "INR" }}</td>
+          <td>
+            <input
+              type="button"
+              class="btn"
+              (click)="updateCar(x)"
+              value="Update"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="isUpdate">
+    <br />
+    <h1>Update Description</h1>
+    <br />
+    <div class="mb-3">
+      <label for="button">ID</label>
+      <br />
+      <input type="text" [(ngModel)]="editCar.id" disabled />
+    </div>
+    <div class="mb-3">
+      <label for="button">Description</label>
+      <br />
+      <input type="text" [(ngModel)]="editCar.name" />
+    </div>
+    <div class="mb-3">
+      <label for="button">Amount </label>
+      <br />
+      <input type="text" [(ngModel)]="editCar.color" disabled />
+      <br />
+    </div>
+    <input
+      type="button"
+      class="btn btn-secondary"
+      (click)="updateDone()"
+      value="Update"
+    />
+  </div>
+
+  <div class="container" *ngIf="isDisplay">
+    <br />
+    <div class="column" style="background-color: rgb(116, 142, 212)">
+      <input
+        type="button"
+        class="btn btn-primary"
+        (click)="candebitDisplay()"
+        value="&#x25C1;"
+      />
+      <div class="container mt-3">
+        <h2>Fund Transfer</h2>
+        <br />
+        <div class="mb-3">
+          <label for="usr">Account No:</label>
+          <input type="text" class="form-control" [(ngModel)]="car1.id" />
+        </div>
+        <div class="mb-3">
+          <label for="usr">Description:</label>
+          <input type="text" class="form-control" [(ngModel)]="car1.name" />
+        </div>
+        <div class="mb-3">
+          <label for="usr">Amount:</label>
+          <input type="text" class="form-control" [(ngModel)]="car1.color" />
+        </div>
+        <br />
+        <input
+          type="button"
+          class="btn btn-primary"
+          (click)="done()"
+          value="Add"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isCredit">
+    <br />
+    <div class="column" style="background-color: rgb(116, 142, 212)">
+      <input
+        type="button"
+        class="btn btn-primary"
+        (click)="cancreditDisplay()"
+        value="&#x25C1;"
+      />
+      <div class="container mt-3">
+        <h2>Add Money</h2>
+        <br />
+        <div class="mb-3">
+          <label for="usr">Account No:</label>
+          <input type="text" class="form-control" [(ngModel)]="car.id" />
+        </div>
+        <div class="mb-3">
+          <label for="usr">Description:</label>
+          <input type="text" class="form-control" [(ngModel)]="car.name" />
+        </div>
+        <div class="mb-3">
+          <label for="usr">Amount:</label>
+          <input type="text" class="form-control" [(ngModel)]="car.color" />
+        </div>
+        <input
+          type="button"
+          class="btn btn-primary"
+          (click)="addCar()"
+          value="Add"
+        />
+        <!--<h1>{{dis}}</h1>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---->
+
+<div id="container">
+  <table id="container_table">
+    <tr>
+      <td>
+        <div id="personal_banking">
+          <table>
+            <tr>
+              <td align="center" (click)="debitDisplay()">Fund Transfer</td>
+              <td>
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6PcP7bigjoUdw5QQFzWb4HwbUxVW9WquL3g&usqp=CAU"
+                  width="70px"
+                  height="70px"
+                />
+              </td>
+            </tr>
+          </table>
+          &nbsp;<br />&nbsp;<br />
+          Our Personal Banking securely allows you to :
+          <ul>
+            <li>Transfer your funds easily</li>
+            <li>Transfer funds to different accounts</li>
+            <li>Secure and smooth online fund transfer</li>
+            <li>View your Transaction History</li>
+          </ul>
+          <!--<input
+              type="button"
+              class="btn btn-primary"
+              (click)="debitDisplay()"
+              value="Money Transfer"
+            />&nbsp;-->
+        </div>
+      </td>
+      <td id="corporate_banking_td">
+        <div id="corporate_banking">
+          <table>
+            <tr>
+              <td align="center" (click)="creditDisplay()">Add Money</td>
+              <td>
+                <img
+                  src="data:image/png;base64,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"
+                  width="80px"
+                  height="80px"
+                  alt="Corporate Icon"
+                />
+              </td>
+            </tr>
+          </table>
+          &nbsp;<br />&nbsp;<br />
+          Our Online Banking allows you to :
+          <ul>
+            <li>Add/Load money to account</li>
+            <li>Transfer funds instantly</li>
+            <li>View your Transaction History</li>
+          </ul>
+        </div>
+      </td>
+      <td>
+        <div id="usefull_link">
+          <span><u>Features of Online Banking :</u></span>
+          <ul>
+            <li
+              href="https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=414&Mode=0"
+            >
+              &#x25b7; Check the account statement online
+            </li>
+            <li>&#x25b7; Transfer funds</li>
+            <li>&#x25b7; Open a fixed deposit account</li>
+            <li>&#x25b7; Secured Transaction</li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

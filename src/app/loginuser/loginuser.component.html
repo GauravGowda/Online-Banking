@@ -1,0 +1,44 @@
+
+
+  <section class="vh-100" style="background-color: #508bfc;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <h3 class="mb-5">Sign in</h3>
+  
+              <div class="form-outline mb-4">
+                <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter email" [(ngModel)] = "user.emailId" id="email" class="form-control form-control-lg" name="email" #email='ngModel' />
+                <label class="form-label" for="typeEmailX-2"></label>
+              </div>
+              <div *ngIf = "email.invalid && (email.dirty || email.touched)">
+
+                <div class="alert alert-danger" *ngIf = "email.errors?.['required'] ">
+                  Email id is Required.
+                </div>
+                <div class="alert alert-danger" *ngIf = "email.errors?.['pattern'] ">
+                  Email id is Invalid.
+                </div>
+              </div>
+              <div class="form-outline mb-4">
+                <input type="password" [(ngModel)] = "user.password" id="pwd" name="pswd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter Password" #pwd='ngModel' class="form-control form-control-lg" />
+                <label class="form-label" for="typePasswordX-2"></label>
+              </div>
+                  
+      <div class="alert alert-danger" *ngIf = "pwd.errors?.['pattern'] ">
+        Invalid Password Format
+      </div>
+  
+              <button class="btn btn-primary btn-lg btn-block" (click)="login()" type="submit">Login</button>
+
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
